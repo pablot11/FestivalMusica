@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
 function iniciarApp(){
     crearGaleria();
     scrollNav();
+    navegacionFija();
 }
 function scrollNav() {
     const enlaces = document.querySelectorAll('.navegacion-principal a');
@@ -21,6 +22,24 @@ function scrollNav() {
 
 
 }
+function navegacionFija() {
+    const barra = document.querySelector('.header');
+    const sobreFestival = document.querySelector('.sobre-festival');
+    const body = document.querySelector('body');
+    window.addEventListener('scroll', function() {
+   
+        if(sobreFestival.getBoundingClientRect().bottom<0){
+            barra.classList.add("fijo");
+            body.classList.add("body-scroll");
+        }
+        else{
+            barra.classList.remove("fijo");
+            body.classList.remove("body-scroll");
+
+        }
+    } )
+}  
+
 function crearGaleria(e) {
     const galeria = document.querySelector('.galeria-imagenes');
     for(let i = 1; i <= 12; i++ ) {
@@ -31,7 +50,6 @@ function crearGaleria(e) {
             <source srcset="build/img/thumb/${i}.webp" type="image/webp">
             <img loading="lazy" width="200" height="300" src="build/img/thumb/${i}.jpg" alt="imagen galeria">
         `;
-asd
         imagen.onclick = function()
         {
             mostrarImagen(i);
